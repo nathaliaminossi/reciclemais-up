@@ -17,12 +17,12 @@ export async function getUserByEmail(email: string) {
   return data.payload
 }
 
-export async function updateUser(id: string, payload: UpdateUserPayload) {
-  const { data } = await api.patch<ApiMutationResponse<User>>(`/users/${id}`, payload)
+export async function updateUser(payload: UpdateUserPayload) {
+  const { data } = await api.patch<ApiMutationResponse<User>>('/users', payload)
   return data.data
 }
 
-export async function deleteUser(id: string) {
-  const { data } = await api.delete<ApiMessageResponse>(`/users/${id}`)
+export async function deleteUser() {
+  const { data } = await api.delete<ApiMessageResponse>('/users')
   return data
 }

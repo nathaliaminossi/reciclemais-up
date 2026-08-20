@@ -34,19 +34,19 @@ export function useUpdateUser(id: string) {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (payload: UpdateUserPayload) => updateUser(id, payload),
+    mutationFn: (payload: UpdateUserPayload) => updateUser(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.detail(id) })
     },
   })
 }
 
-export function useDeleteUser() {
+export function useDeleteUser(id: string) {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (id: string) => deleteUser(id),
-    onSuccess: (_data, id) => {
+    mutationFn: () => deleteUser(),
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.detail(id) })
     },
   })
